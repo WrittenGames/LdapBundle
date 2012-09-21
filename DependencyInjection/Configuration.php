@@ -69,7 +69,8 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode( 'authentication' )
                     ->children()
-                        ->scalarNode( 'directory' )->defaultValue( 'default' )->end()
+                        ->scalarNode( 'directory' )->cannotBeEmpty()->defaultValue( 'default' )->end()
+                        ->scalarNode( 'user_manager' )->cannotBeEmpty()->isRequired()->end()
                     ->end()
                 ->end()
             ->end();
