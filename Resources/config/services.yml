@@ -1,6 +1,11 @@
 parameters:
     wg.ldap.client.class: WG\LdapBundle\Ldap\Client
+    wg.ldap.directories: ~
+    wg.ldap.default_directory: ~
 
 services:
     wg.ldap:
         class: %wg.ldap.client.class%
+        arguments:
+            - %wg.ldap.directories%
+            - %wg.ldap.default_directory%

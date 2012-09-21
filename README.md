@@ -15,6 +15,10 @@ into your project's config.yml.
 
 ### Example configuration
 
+This example specifies one directory with master and fallback servers. If you
+name your directory `default` you can leave out the `default_directory` option
+(because `default` is its default value).
+
 ```
 wg_ldap:
     default_directory: default
@@ -31,7 +35,7 @@ wg_ldap:
 
 In case you want to make your users authenticate against a directory, add the
 `authentication` section to your configuration, specify the directory to be
-authenticated against, and provide it with your user manager:
+authenticated against, and provide it with the service ID of your user manager:
 
 ```
 wg_ldap:

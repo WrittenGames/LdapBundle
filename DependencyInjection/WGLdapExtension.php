@@ -19,14 +19,20 @@ class WGLdapExtension extends Extension
         $loader = new Loader\YamlFileLoader( $container, $fileLocator );
         $loader->load( 'services.yml' );
         // Set parameters
-        if ( isset( $config['results_per_page'] ) )
+//        echo '<pre>';
+//        print_r( $config );
+//        echo '</pre>';
+//        die();
+        $defDir = $config['default_directory'];
+        if ( !isset( $config['directories'][$defDir] ) )
         {
-            //throw new \InvalidArgumentException( 'At least one directory server must be defined' );
+            throw new \InvalidArgumentException( 'WGLdapBundle says "Configured default directory is not defined."' );
         }
-        echo '<pre>';
-        print_r( $config );
-        echo '</pre>';
-        die();
-        //$container->setParameter( 'wg_ldap.results_per_page', $config['results_per_page'] );
+        if ( count( $config['directories'][$defDir]['servers'] ) < 1 )
+        {
+            throw new \InvalidArgumentException( 'WGLdapBundle says "At least one directory server must be defined."' );
+        }
+        $container->setParameter( 'wg.ldap.default_directory', $config['default_directory'] );
+        $container->setParameter( 'wg.ldap.directories', $config['directories'] );
     }
 }

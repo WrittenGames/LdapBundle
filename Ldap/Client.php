@@ -5,21 +5,37 @@ namespace WG\LdapBundle\Ldap;
 class Client
 {
     protected $link;
+    protected $directories;
     protected $directory;
     
-    public function __construct()
+    public function __construct( array $directories, $defaultDirectoryName )
     {
+        $this->directories = $directories;
+        $this->directory = $directories[$defaultDirectoryName];
+//        echo '<pre>';
+//        print_r( $directories );
+//        echo '</pre>';
+//        die();
     }
 
     /**
      * Connect to directory
      * 
      * @param array $directory
+     * @throws InvalidArgumentException
      * @throws Exception
      */
-    public function connect( array $directory )
+    public function connect( $directoryName = '' )
     {
-        foreach ( $directory['servers'] as $server )
+        if ( $directoryName )
+        {
+            if ( !isset( $this->directories[$directoryName] ) )
+            {
+                throw new \InvalidArgumentException( 'WGLdapBundle says "Directory \'' . $directoryName . '\' is not defined."' );
+            }
+            $this->directory = $this->directories[$directoryName];
+        }
+        foreach ( $this->directory['servers'] as $server )
         {
             $this->link = @ldap_connect( $server['host'], $server['port'] );
             if ( $this->link ) break;
@@ -28,7 +44,6 @@ class Client
         {
             throw new \Exception( 'Could not connect to directory server.' );
         }
-        $this->directory = $directory;
     }
 
     /**
@@ -80,4 +95,8 @@ class Client
     }
     
     // TODO: implement more methods
+    public function foo()
+    {
+        return 'foo';
+    }
 }
