@@ -5,19 +5,19 @@ LDAP bundle for Symfony 2
 
 ### Configuring directory access
 
-In the most basic case, with the directory service residing on the same machine,
-you won't need to configure anything.
+In the most basic case imaginable, a directory server residing on the same
+machine as your Symfony2 project, you won't need to configure anything.
 
-In most cases, however, the directory server(s) will live somewhere else.
-Sometimes you may also want to use more than one directory, and/or a fallback
-for the primary server. In those cases you need to put a bit of configuration
-into your project's config.yml.
+Usually, however, the directory server(s) will live somewhere else. Sometimes
+you may also want to specify a fallback server, and/or use more than just one
+directory. In those cases you need to put a bit of configuration into your
+project's config.yml.
 
 ### Example configuration
 
-This example specifies one directory with master and fallback servers. If you
-name your directory `default` you can leave out the `default_directory` option
-(because `default` is its default value).
+This example specifies one directory with master and fallback servers. If
+you name your directory `default`, like in this example, you can omit the
+`default_directory` option (because `default` is its default value).
 
 ```
 wg_ldap:

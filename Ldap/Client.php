@@ -21,7 +21,7 @@ class Client
     /**
      * Connect to directory
      * 
-     * @param array $directory
+     * @param string $directoryName
      * @throws InvalidArgumentException
      * @throws Exception
      */
