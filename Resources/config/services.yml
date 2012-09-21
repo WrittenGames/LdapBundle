@@ -1,0 +1,6 @@
+parameters:
+    wg.ldap.client.class: WG\LdapBundle\Ldap\Client
+
+services:
+    wg.ldap:
+        class: %wg.ldap.client.class%
