@@ -17,24 +17,25 @@ into your project's config.yml.
 
 ```
 wg_ldap:
-    ldap:
-        default_directory: default
-        directories:
-            default:
-                servers:
-                    primary:
-                        host: ldap.example.com
-                    secondary:
-                        host: ldap2.example.com
+    default_directory: default
+    directories:
+        default:
+            servers:
+                primary:
+                    host: ldap.example.com
+                secondary:
+                    host: ldap2.example.com
 ```
 
 ### Authentication
 
 In case you want to make your users authenticate against a directory, add the
-`authentication` section to your configuration:
+`authentication` section to your configuration, specify the directory to be
+authenticated against, and provide it with your user manager:
 
 ```
 wg_ldap:
     authentication:
         directory: default
+        user_manager: user_manager_id
 ```
