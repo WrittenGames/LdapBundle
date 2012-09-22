@@ -12,13 +12,6 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $node = $treeBuilder->root( 'wg_ldap' );
-        $this->addDirectorySection( $node );
-        $this->addAuthenticationSection( $node );
-        return $treeBuilder;
-    }
-    
-    private function addDirectorySection( ArrayNodeDefinition $node )
-    {
         $node
             ->children()
                 ->arrayNode( 'directories' )
@@ -59,18 +52,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode( 'default_directory' )->cannotBeEmpty()->defaultValue( 'default' )->cannotBeEmpty()->end()
             ->end()
         ;
-    }
-    
-    private function addAuthenticationSection( ArrayNodeDefinition $node )
-    {
-        $node
-            ->children()
-                ->arrayNode( 'authentication' )
-                    ->children()
-                        ->scalarNode( 'directory' )->cannotBeEmpty()->defaultValue( 'default' )->end()
-                        ->scalarNode( 'user_manager' )->cannotBeEmpty()->isRequired()->end()
-                    ->end()
-                ->end()
-            ->end();
+        return $treeBuilder;
     }
 }

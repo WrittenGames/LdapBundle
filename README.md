@@ -30,16 +30,3 @@ wg_ldap:
                 secondary:
                     host: ldap2.example.com
 ```
-
-### Authentication
-
-In case you want to make your users authenticate against a directory, add the
-`authentication` section to your configuration, specify the directory to be
-authenticated against, and provide it with the service ID of your user manager:
-
-```
-wg_ldap:
-    authentication:
-        directory: default
-        user_manager: user_manager_id
-```

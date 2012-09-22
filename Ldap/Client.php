@@ -12,10 +12,6 @@ class Client
     {
         $this->directories = $directories;
         $this->directory = $directories[$defaultDirectoryName];
-//        echo '<pre>';
-//        print_r( $directories );
-//        echo '</pre>';
-//        die();
     }
 
     /**
