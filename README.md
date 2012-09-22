@@ -1,7 +1,7 @@
 LdapBundle
 ==========
 
-LDAP bundle for Symfony 2
+LDAP bundle for Symfony2
 
 ### Configuring directory access
 
@@ -13,11 +13,9 @@ you may also want to specify a fallback server, and/or use more than just one
 directory. In those cases you need to put a bit of configuration into your
 project's config.yml.
 
-### Example configuration
-
-This example specifies one directory with master and fallback servers. If
-you name your directory `default`, like in this example, you can omit the
-`default_directory` option (because `default` is its default value).
+This example configuration specifies one directory with master and fallback
+servers. If you name your directory `default`, like in this example, you can
+omit the `default_directory` option (because `default` is its default value).
 
 ```
 wg_ldap:
