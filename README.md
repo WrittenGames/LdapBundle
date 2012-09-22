@@ -30,3 +30,19 @@ wg_ldap:
                 secondary:
                     host: ldap2.example.com
 ```
+
+### Basic usage
+
+```
+// Get service
+$ldap = $container->get( 'wg.ldap' );
+
+// Connect to default directory server and perform an anonymous bind
+$ldap->connect()->bind();
+
+// Connect to specific directory server and perform an authenticating bind
+$ldap->connect( 'dirServ' )->bind( $relativeDistinguishedName, $password );
+
+// Search
+$ldap->search( $baseDn, $filter );
+```

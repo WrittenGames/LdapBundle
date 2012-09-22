@@ -40,6 +40,7 @@ class Client
         {
             throw new \Exception( 'Could not connect to directory server.' );
         }
+        return $this;
     }
 
     /**
@@ -57,7 +58,8 @@ class Client
         @ldap_set_option( $this->link, LDAP_OPT_PROTOCOL_VERSION,   $this->directory['protocol_version'] );
         @ldap_set_option( $this->link, LDAP_OPT_REFERRALS,          $this->directory['referrals'] );
         @ldap_set_option( $this->link, LDAP_OPT_NETWORK_TIMEOUT,    $this->directory['network_timeout'] );
-        return @ldap_bind( $this->link, $relativeDistinguishedName, $password );
+        if ( @ldap_bind( $this->link, $relativeDistinguishedName, $password ) ) return $this;
+        return false;
     }
 
     /**
