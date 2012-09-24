@@ -30,7 +30,6 @@ class Configuration implements ConfigurationInterface
                             ),
                         )
                     )
-                    ->addDefaultsIfNotSet()
                     ->useAttributeAsKey( 'id' )
                     ->prototype( 'array' )
                         ->children()
