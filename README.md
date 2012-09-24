@@ -35,11 +35,11 @@ wg_ldap:
 // Get service
 $ldap = $container->get( 'wg.ldap' );
 
-// Connect to default directory server and perform an anonymous bind
+// Connect to default directory and perform an anonymous bind
 $ldap->connect()->bind();
 
-// Connect to specific directory server and perform an authenticating bind
-$ldap->connect( 'dirServ' )->bind( $relativeDistinguishedName, $password );
+// Connect to specific directory and perform an authenticating bind
+$ldap->connect( 'myDir' )->bind( $relativeDistinguishedName, $password );
 
 // Search
 $ldap->search( $baseDn, $filter );
