@@ -58,7 +58,14 @@ class Client
         @ldap_set_option( $this->link, LDAP_OPT_PROTOCOL_VERSION,   $this->directory['protocol_version'] );
         @ldap_set_option( $this->link, LDAP_OPT_REFERRALS,          $this->directory['referrals'] );
         @ldap_set_option( $this->link, LDAP_OPT_NETWORK_TIMEOUT,    $this->directory['network_timeout'] );
-        if ( @ldap_bind( $this->link, $relativeDistinguishedName, $password ) ) return $this;
+        if ( @ldap_bind( $this->link, $relativeDistinguishedName, $password ) )
+        {
+            return $this;
+        }
+        else
+        {
+            throw new \Exception( 'LDAP bind failed.' );
+        }
         return false;
     }
 
@@ -70,18 +77,18 @@ class Client
      * @return array
      */
     public function search(
-                      $baseDn,
-                      $filter,
-                      $attributes = null,
-                      $attrsonly = null,
-                      $sizelimit = null,
-                      $timelimit = null,
-                      $deref = null
+                      $baseDistinguishedName = '',
+                      $filter = '',
+                      $attributes = array(),
+                      $attrsonly = 0,
+                      $sizelimit = 0,
+                      $timelimit = 0,
+                      $deref = LDAP_DEREF_NEVER
                     )
     {
-        $res = @ldap_search(
+        $res = ldap_search(
                   $this->link,
-                  $baseDn,
+                  $baseDistinguishedName,
                   $filter,
                   $attributes,
                   $attrsonly,
@@ -90,11 +97,5 @@ class Client
                   $deref
                 );
         return @ldap_get_entries( $this->link, $res );
-    }
-    
-    // TODO: implement more methods
-    public function foo()
-    {
-        return 'foo';
     }
 }
