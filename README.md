@@ -1,3 +1,7 @@
+### Bundle not maintained anymore - please use the [Cisco LDAP Bundle](https://github.com/CiscoVE/LdapBundle) instead
+
+---------------
+
 LdapBundle
 ==========
 
